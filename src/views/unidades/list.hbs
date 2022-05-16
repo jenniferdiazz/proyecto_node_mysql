@@ -1,0 +1,49 @@
+<div class="container p-4">
+    {{!-- <div class="row"> --}}
+         <table class="table">
+      <thead>
+        <tr scope="col">
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Marca</th>
+          <th scope="col">Modelo</th>
+          <th scope="col">Capacidad</th>
+          <th scope="col">Dependencia</th>
+          <th scope="col">Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+      
+        
+        {{#each unidades}}
+        <tr>
+             <td>{{unidad_id}}</td>
+            <td>{{unidad_nombre}}</td>
+            <td>{{unidad_tipo}}</td>
+            <td>{{unidad_marca}}</td>
+            <td>{{unidad_modelo}}</td>
+            <td>{{unidad_capadidad}}</td>
+            <td>{{unidad_dependencia}}</td>
+            <td>  
+              <a href="/unidades/delete/{{unidad_id}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+             
+                
+           </td>
+         {{!-- <div class="col-md-3">
+             <div class="card text-center">
+                 <div class="card-body">
+                     <a href="">
+                         <h3 class="card-title text-uppercase">
+                             {{unidad_nombre}}
+                         </h3>
+                     </a>
+                 </div>
+             </div> --}}
+
+         </tr>
+        {{/each}}
+        </tbody>
+        </table>
+    {{!-- </div> --}}
+</div>

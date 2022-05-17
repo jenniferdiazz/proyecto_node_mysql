@@ -1,6 +1,17 @@
 
 function add(req, res){
-    res.render('unidades/add');
+  req.getConnection((err, conn) => {
+    conn.query('SELECT * FROM dependencia', (err, dependencias) => {
+      if(err) {
+        res.json(err);
+      }
+      console.log(dependencias)
+      res.render('unidades/add',{dependencias});
+
+    });
+  });
+
+    //res.render('unidades/add');
  }
 
 function create(req, res){

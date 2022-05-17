@@ -3,34 +3,34 @@
         <div class="col-md-4 mx-auto">
             <div class="card">
                 <div class="card-body">
-                    <form action="/unidades/add" method="POST">
+                    <form action="/unidades/edit/{{unidad.unidad_id}}" method="POST">
                         <div class="form-group">
                             <label for="fid">ID</label>
-                            <input type="text" class="form-control" name="id" placeholder="ID" autofocus>
+                            <input type="text" value="{{unidad.unidad_id}}" class="form-control" name="id" placeholder="ID" readonly autofocus>
                         </div>
                         <div class="form-group">
                             <label for="fnombre">Nombre</label>
-                            <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+                            <input type="text" value="{{unidad.unidad_nombre}}" class="form-control" name="nombre" placeholder="Nombre">
                         </div>
                         <div class="form-group">
                             <label for="ftipo">Tipo</label>
-                            <input type="text" name="tipo" class="form-control" placeholder="Tipo">
+                            <input type="text" value="{{unidad.unidad_tipo}}" name="tipo" class="form-control" placeholder="Tipo">
                         </div>
                         <div class="form-group">
                             <label for="fmarca">Marca</label>
-                            <input type="text" name="marca" class="form-control" placeholder="Marca">
+                            <input type="text" name="marca" value="{{unidad.unidad_marca}}" class="form-control" placeholder="Marca">
                         </div>
                         <div class="form-group">
                             <label for="fmodelo">Modelo</label>
-                            <input type="text" name="modelo" class="form-control" placeholder="Modelo">
+                            <input type="text" name="modelo" value="{{unidad.unidad_modelo}}" class="form-control" placeholder="Modelo">
                         </div>
                           <div class="form-group">
                               <label for="fcapacidad">Capacidad</label>
-                            <input type="text" name="capacidad" class="form-control" placeholder="capacidad">
+                            <input type="text" value="{{unidad.unidad_capadidad}}" name="capacidad" class="form-control" placeholder="capacidad">
                         </div>
                           <div class="form-group">
-                              <label for="fcapacidad">Dependencia</label>
-                            <input type="text" name="dependencia" class="form-control" placeholder="dependencia">
+                            <label for="fcapacidad">Dependencia</label>
+                            <input type="text" value="{{unidad.unidad_dependencia}}" name="dependencia" class="form-control" placeholder="dependencia">
                         </div>
                         <div class="form-group">
                            <button class="btn btn-success btn-block">

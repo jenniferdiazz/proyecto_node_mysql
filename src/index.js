@@ -6,6 +6,10 @@ const  { engine } = require('express-handlebars');
 const myconnection = require('express-myconnection');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const flash = require('connect-flash');
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session');
+const { database } = require('./keys');
 
 
 //initializations
@@ -27,11 +31,20 @@ app.set('view engine', 'hbs');
 
 //middlewares funciones que se ejecutan cada vez que un usuario envia una peticion al servidor
 //ejemplo: morgan muestra por consola las peticiones que van llegand
+app.use(session({
+    secret:'proyecto_node',
+    resave:false,
+    saveUninitialized:false,
+    store: new MySQLStore(database)
+}))
+ app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
+
 //global variables
 app.use((req,res, next)=>{
+    app.locals.success = req.flash('success');
 next();
 })
 
@@ -44,13 +57,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-app.use(myconnection(mysql,{
-    host:'localhost',
-    user:'root',
-    password:'admin',
-    port:3306,
-    database:'base_acond'
-})) 
+// app.use(myconnection(mysql,{
+//     host:'localhost',
+//     user:'root',
+//     password:'admin',
+//     port:3306,
+//     database:'base_acond'
+// })) 
+
+
+app.use(myconnection(mysql,database)) 
 
 //routes: url del servidor
 app.use(require('./routes'))

@@ -15,8 +15,6 @@ function create(req, res){
         unidad_capadidad : capacidad, 
         unidad_dependencia : dependencia
     }
-    console.log(newUnidad);
-
 
     req.getConnection((err, conn) => {
      
@@ -27,6 +25,7 @@ function create(req, res){
             res.send("Ops! ha ocurrido un error /n" + err)
         }
         else{
+          req.flash('success','guardado exitosamente')
           res.redirect('/unidades');
        }
     });
@@ -59,17 +58,54 @@ function list(req, res){
                 res.send("Ops! ha ocurrido un error /n" + err)
             }
             else{
+              req.flash('success','eliminado exitosamente')
                 res.redirect('/unidades');
             }
             //res.send('Eliminado');
-          
-      
         });
       })
-    
-
-
  }
+
+ 
+ function edit(req, res){
+  id = req.params.id;
+  req.getConnection((err, conn) => {
+   conn.query('SELECT * FROM unidades WHERE unidad_id = ?', [id], (err, unidades) => {
+     if(err) {
+       res.json(err);
+     }
+    
+     res.render('unidades/edit',{unidad: unidades[0]});
+   });
+ });
+
+}
+
+function update(req, res){
+  id = req.params.id;
+  //console.log(req.body)
+   const { nombre, tipo, marca, modelo, capacidad, dependencia } = req.body;
+    const newUnidad = {
+        unidad_id: id,
+        unidad_nombre : nombre,
+        unidad_tipo : tipo,
+        unidad_marca : marca, 
+        unidad_modelo : modelo, 
+        unidad_capadidad : capacidad, 
+        unidad_dependencia : dependencia
+    }
+    //console.log(newUnidad);
+  req.getConnection((err, conn) => {
+   conn.query('UPDATE unidades SET ? WHERE unidad_id = ?', [newUnidad, id], (err, unidades) => {
+     if(err) {
+       res.json(err);
+     }
+     req.flash('success','actualizado exitosamente')
+     res.redirect('/unidades');
+   });
+ });
+
+}
 
 
 
@@ -77,5 +113,7 @@ function list(req, res){
     add,
     create,
     list,
-    destroy
+    destroy,
+    edit,
+    update
   }

@@ -1,4 +1,5 @@
 
+
 function add(req, res){
   req.getConnection((err, conn) => {
     conn.query('SELECT * FROM dependencia', (err, dependencias) => {
@@ -85,10 +86,9 @@ function list(req, res){
      if(err) {
        res.json(err);
      }
-    
-     res.render('unidades/edit',{unidad: unidades[0]});
+     res.render('unidades/edit',{unidad: unidades[0]},);
    });
- });
+ }); 
 
 }
 

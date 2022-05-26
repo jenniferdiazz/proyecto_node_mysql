@@ -1,12 +1,15 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
-  <a class="navbar-brand" href="/unidades">Unidades</a>
+  <a class="navbar-brand" href="/"><img src="img/img3.png" alt="Example" width="90px" height="60px"></i>
+</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
+
+      {{#if user}}
+      <li class="nav-item dropdown pr-4">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Unidades
         </a>
@@ -16,6 +19,26 @@
           <a class="dropdown-item" href="/unidades/add">Agregar unidad</a>
         </div>
       </li>
+      <li class="nav-item  pr-4">
+        <a href="/profile" class="nav-link">Perfil</a>
+      </li>
+       <li class="nav-item  pr-4">
+        <a href="http://192.168.0.1/" class="nav-link">Monitoreo</a>
+      </li>
+       <li class="nav-item  pr-4">
+        <a href="/logout" class="nav-link">Cerrar Sesión</a>
+      </li>
+     
+      {{else}}
+      <li class="nav-item  pr-4">
+        <a href="/signin" class="nav-link">Iniciar Sesión</a>
+      </li>
+      <li class="nav-item  pr-4">
+        <a href="/signup" class="nav-link">Registrarse</a>
+      </li>
+
+      {{/if}}
+
     </ul>
   </div>
   </div>

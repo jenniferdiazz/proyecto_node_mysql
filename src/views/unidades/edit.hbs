@@ -1,6 +1,5 @@
-<div class="container p-4">
-    <div class="row">
-        <div class="col-md-4 mx-auto">
+<header class="secondhead">
+        <div class="col-md-4 mx-auto" style="font-size: 15px;">
             <div class="card">
                 <div class="card-body">
                     <form action="/unidades/edit/{{unidad.unidad_id}}" method="POST">
@@ -10,7 +9,7 @@
                         </div>
                         <div class="form-group">
                             <label for="fnombre">Nombre</label>
-                            <input type="text" value="{{unidad.unidad_nombre}}" class="form-control" name="nombre" placeholder="Nombre">
+                            <input type="text" value="{{unidad.unidad_nombre}}" class="form-control" name="nombre" placeholder="Nombre" >
                         </div>
                         <div class="form-group">
                             <label for="ftipo">Tipo</label>
@@ -33,13 +32,13 @@
                             <input type="text" value="{{unidad.unidad_dependencia}}" name="dependencia" class="form-control" placeholder="dependencia">
                         </div>
                         <div class="form-group">
-                           <button class="btn btn-success btn-block">
-                               save
+                           <button class="btn btn-info btn-block">
+                               Guardar
                            </button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>                     
-</div>
+        </header>
+ 

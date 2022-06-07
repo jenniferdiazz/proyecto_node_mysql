@@ -17,9 +17,8 @@ function add(req, res){
 
 function create(req, res){
  
-    const { id, nombre, tipo, marca, modelo, capacidad, dependencia } = req.body;
+    const { nombre, tipo, marca, modelo, capacidad, dependencia } = req.body;
     const newUnidad = {
-        unidad_id: id,
         unidad_nombre : nombre,
         unidad_tipo : tipo,
         unidad_marca : marca, 

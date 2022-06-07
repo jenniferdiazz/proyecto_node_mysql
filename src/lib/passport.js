@@ -5,6 +5,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const helpers = require('../lib/helpers');
 const util = require('util');
 const pool = require('../database');
+const emailer = require ('../lib/emailer')
 
 passport.use('local.signin', new LocalStrategy({
   usernameField: 'username',
@@ -37,12 +38,19 @@ passport.use('local.signup', new LocalStrategy({
 
 
     const { fullname } = req.body
+    const { email } = req.body
+  
+
+
     const newUser={
         username,
         password,
-        fullname
+        fullname,
+        email
 
     };
+
+
 
     newUser.password = await helpers.encryptPassword(password);
     
@@ -55,7 +63,8 @@ passport.use('local.signup', new LocalStrategy({
        result = await query('INSERT INTO users SET ?', [newUser])
  
        newUser.id = result.insertId;
-       console.log(newUser)
+       emailer.sendMail(newUser)
+  
 
        return done(null, newUser)
     
